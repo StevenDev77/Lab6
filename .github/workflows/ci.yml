@@ -1,15 +1,14 @@
-name: CI Workflow
+name: Creacion de workflow para CI
 
 # b. Configurar los triggers
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 # c. Configurar los trabajos a realizar
 jobs:
   build-and-test:
+    name: Build and test
     runs-on: ubuntu-latest
 
     # d. Configurar dentro de los trabajos los pasos a ejecutarse
