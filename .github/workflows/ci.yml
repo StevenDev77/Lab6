@@ -1,34 +1,38 @@
 name: CI Workflow
 
+# b. Configurar los triggers
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
+# c. Configurar los trabajos a realizar
 jobs:
-  build-and-test: 
+  build-and-test:
     runs-on: ubuntu-latest
+
+    # d. Configurar dentro de los trabajos los pasos a ejecutarse
     steps:
-        - name: Clonar el repositorio
-          uses: actions/checkout@v4
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
 
-        - name: Configurar node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: '20'
-            
-        - name: Instalar las dependencias
-          run: npm install
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-        - name: Lint del codigo
-          run: npm run lint
+      - name: Instalar las dependencias
+        run: npm install
 
-        - name: Ejecutar pruebas
-          run: npm test
+      - name: Ejecutar linter
+        run: npm run lint
 
-        - name: Verificar cobertura (≥80%)
-          run: npm run coverage
+      - name: Ejecutar pruebas
+        run: npm test
 
-        - name: Build
-          run: npm ci && npm run build
+      # Paso configurado para provocar un error deliberadamente
+      - name: Provocar error intencional
+        run: |
+          echo "Este paso provocara un error en la ejecucion del CI workflow."
+          exit 1
