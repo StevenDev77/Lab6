@@ -1,5 +1,5 @@
 function fibonacci(n) {
-    if (n < 0) return 0;
+    if (n < 0) return null;
     let fib = [0, 1];
     for (let i = 2; i <= n; i++) {
         fib[i] = fib[i - 1] + fib[i - 2];
@@ -8,7 +8,7 @@ function fibonacci(n) {
 }
 
 function factorial(n) {
-    if (n < 0) return 'No definido para negativos';
+    if (n < 0) return null;
     if (n === 0 || n === 1) return 1;
     return n * factorial(n - 1);
 }
