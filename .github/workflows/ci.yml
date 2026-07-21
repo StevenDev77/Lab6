@@ -3,7 +3,6 @@ name: Creacion de workflow para CI
 # b. Configurar los triggers
 on:
   push:
-    branches: [ main ]
 
 # c. Configurar los trabajos a realizar
 jobs:
@@ -27,11 +26,9 @@ jobs:
       - name: Ejecutar linter
         run: npm run lint
 
-      - name: Ejecutar pruebas
+      - name: Ejecutar build
+        run: npm run build
+
+      - name: Test Corregido
         run: npm test
 
-      # Paso configurado para provocar un error deliberadamente
-      - name: Provocar error intencional
-        run: |
-          echo "Este paso provocara un error en la ejecucion del CI workflow"
-          exit 1
