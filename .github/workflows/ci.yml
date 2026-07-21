@@ -33,5 +33,5 @@ jobs:
       # Paso configurado para provocar un error deliberadamente
       - name: Provocar error intencional
         run: |
-          echo "Este paso provocara un error en la ejecucion del CI workflow."
+          echo "Este paso provocara un error en la ejecucion del CI workflow"
           exit 1
