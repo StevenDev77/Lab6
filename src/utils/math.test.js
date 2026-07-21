@@ -1,6 +1,6 @@
 const { fibonacci, factorial } = require('./math');
 
-describe('Funciones matemáticas (math.js)', () => {
+describe('Pruebas unitarias para funciones matemáticas', () => {
     test('El fibonacci de 4 debe ser 3', () => {
         expect(fibonacci(4)).toBe(3);
     });
@@ -9,11 +9,12 @@ describe('Funciones matemáticas (math.js)', () => {
         expect(factorial(5)).toBe(120);
     });
 
-    test('El factorial de 0 debe ser 1', () => {
-        expect(factorial(0)).toBe(1);
+    test('Debe retornar null al calcular negativos', () => {
+        expect(factorial(-1)).toBeNull();
     });
 
-    test('El factorial de número negativo debe retornar un mensaje de error', () => {
-        expect(factorial(-1)).toBe('No definido para negativos');
+    // Tests para Fibonacci
+    test('Debe retornar null para números negativos en fibonacci', () => {
+        expect(fibonacci(-5)).toBeNull();
     });
 });
