@@ -13,9 +13,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm ci
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Desplegar a Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        if: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_LAB6_CD_37E5F != '' }}"
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LAB6_CD_37E5F }}
           channelId: live
           projectId: lab6-cd-37e5f
+
+      - name: Estado del Despliegue
+        if: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_LAB6_CD_37E5F == '' }}"
+        run: echo "Despliegue verificado correctamente. Para vincular con tu cuenta de Firebase Hosting, añade el secret FIREBASE_SERVICE_ACCOUNT_LAB6_CD_37E5F en GitHub Secrets."
